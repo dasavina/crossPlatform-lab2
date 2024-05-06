@@ -7,11 +7,60 @@
     <title>Hello Spring!</title>
 </head>
 <body>
-<h1 th:text="${pageTitle}"></h1><div>
+
+<!-- ----------------------- Посилання ----------------------->
+<a th:href="@{https://www.thymeleaf.org/}">Thymeleaf Website</a>
+
+<!-- ----------------------- Вибрані об’єкти ----------------------->
+<h1>Profile</h1>
+<div th:object="${User}">
+    <p>Name: <span th:text="*{login}"></span></p>
+    <p>Region: <span th:text="*{region}"></span></p>
+    <p>Online now: <span th:text="*{status}"></span></p>
+</div>
+
+
+<!-- ----------------------- Literal substitutions ----------------------->
+<div th:text= "'About myself: ' + ${User.description}"> </div>
+
+
+<!--УМОВНЕ ВКЛЮЧЕННЯ + ВИКЛЮЧЕННЯ-->
+
+<div th:if="${User.friends.size() > 0}">You have <span th:text="${User.friends.size()}"
+></span> friends currently.</div>
+<div th:unless="${User.friends.size() > 0}">You have no friends currently.</div>
+<!-- ----------------------- Expression inlining ----------------------->
+<span>Number of friends including bots - [[${User.friends.size() + additional}]]</span>
+
+
+<!-- Мапи -->
+<div>My first friend is <span th:text="${friendsList[1]}"></span></div>
+<div>The last person I befriended is <span th:text="${friendsList[2]}"></span> </div>
+
+<!-- ----------------------Ітерація--------------------->
+<div>
+    <h3>Languages I learn</h3>
     <ul>
         <li th:each="language : ${languages}">
             <span th:text="${language}"></span>
         </li>
-    </ul> </div>
+    </ul>
+</div>
+
+<!-- Масиви і списки -->
+<div th:text="|Now I am focusing more on  ${languages[0]}|"></div>
+
+
+
+<!-- -----------------Атрибут ідентифікатора елемента---------------->
+<div th:id="'container-' + ${username}"></div>
+<br>
+
+
+
+
+<!-- ----------------------- Preprocessing ----------------------->
+<h1 th:text="#{__${farewell}__}"></h1>
+
 </body>
 </html>
