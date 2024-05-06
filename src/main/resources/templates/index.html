@@ -8,6 +8,14 @@
 </head>
 <body>
 
+
+<!----------------------- Локалізований текст ----------------------->
+
+<h1 th:text="#{welcome.text} + ${pageTitle}" th:lang="${'uk_UA' ?: 'en'}"></h1>
+
+<!-- Змінні -->
+<div><span th:text="#{name.text} + ${username}"></span></div>
+
 <!-- ----------------------- Посилання ----------------------->
 <a th:href="@{https://www.thymeleaf.org/}">Thymeleaf Website</a>
 
@@ -26,20 +34,20 @@
 
 <!--УМОВНЕ ВКЛЮЧЕННЯ + ВИКЛЮЧЕННЯ-->
 
-<div th:if="${User.friends.size() > 0}">You have <span th:text="${User.friends.size()}"
-></span> friends currently.</div>
-<div th:unless="${User.friends.size() > 0}">You have no friends currently.</div>
+<div th:if="${User.friends.size() > 0}">Current number of friends:  <span th:text="${User.friends.size()}"
+></span></div>
+<div th:unless="${User.friends.size() > 0}">No friends currently.</div>
 <!-- ----------------------- Expression inlining ----------------------->
 <span>Number of friends including bots - [[${User.friends.size() + additional}]]</span>
 
 
 <!-- Мапи -->
-<div>My first friend is <span th:text="${friendsList[1]}"></span></div>
-<div>The last person I befriended is <span th:text="${friendsList[2]}"></span> </div>
+<div>first friend is <span th:text="${friendsList[1]}"></span></div>
+<div>The last person befriended is <span th:text="${friendsList[2]}"></span> </div>
 
 <!-- ----------------------Ітерація--------------------->
 <div>
-    <h3>Languages I learn</h3>
+    <h3>Languages I learn: </h3>
     <ul>
         <li th:each="language : ${languages}">
             <span th:text="${language}"></span>
