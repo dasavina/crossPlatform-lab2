@@ -27,6 +27,8 @@ public class DemoController {
         model.addAttribute("additional", 2);
         model.addAttribute("farewell", "goodbye");
 
+
+
         return "index";
     }
 }
